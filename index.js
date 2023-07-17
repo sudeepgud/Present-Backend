@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGOURL,{useNewUrlParser:true,useUnifiedTopology:t
 
 app.listen(3001,()=>{console.log("Server Started")});
 
-app.use(cors({origin:["http://localhost:3000"],methods:["GET","POST"],credentials:true}))
+app.use(cors({origin:["https://present-frontend.onrender.com"],methods:["GET","POST"],credentials:true}))
 
 app.use(cookie());
 app.use(express.json());
