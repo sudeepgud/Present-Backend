@@ -7,6 +7,7 @@ mongoose.set('strictQuery',true);
 const nodemailer = require('nodemailer');
 const cookie = require('cookie-parser');
 const bcrypt = require('bcrypt');
+const Label = require('./Schema/label');
 const User = require('./Schema/user');
 const Otp = require('./Schema/otp');
 const app = express();
@@ -157,3 +158,21 @@ app.post('/login',async (req,res)=>{
             res.status(200).json(errors);
         }
 });
+
+//CNN Outputs Saved
+app.post('/uploadlabel',async (req,res)=>{
+    try{
+        let label = await Label.create(req.body);
+        res.status(200).json({status:"ok"})
+    }catch(err){
+        console.log(err);
+    }
+})
+
+//CNN Outputs retrieved
+app.post('/downloadlabel',async(req,res)=>{
+    const images = await Label.find({});
+    res.status(200).json({
+        images:images
+    })
+})
